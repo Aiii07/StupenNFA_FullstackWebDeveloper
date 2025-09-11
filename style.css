@@ -1,0 +1,123 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  color: #333;
+  font-family: 'Times New Roman', Times, serif
+}
+
+main {
+  flex: 1;
+  min-height: 60vh;
+  padding: 20px;
+}
+
+.logo {
+  height: 30px;
+  width: auto;
+  border-radius: 5px;
+}
+
+.navbar {
+  background-color: #476EAE !important;
+}
+.navbar a {
+  color: #fff !important;
+  font-weight: bold;
+}
+.navbar a:hover {
+  color: #6D94C5 !important;
+}
+
+header img {
+  height: 10vh; 
+  object-fit: cover;
+  width: 100%;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px; 
+  margin: 20px 0;
+}
+
+.gallery img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #5682B1;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+footer {
+  background-color: #476EAE;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+footer .sosmed {
+  display: flex;
+  gap: 10px;
+}
+
+footer .sosmed img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.2s;
+}
+
+footer .sosmed img:hover {
+  transform: scale(1.2);
+}
+
+a {
+  color: #476EAE;
+  text-decoration: none;
+}
+a:hover {
+  color: #6D94C5;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table th, table td {
+  border: 1px solid #fff;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+table th {
+  background-color: #476EAE;
+}
+
+table tr:nth-child(even) {
+  background-color: #6D94C5;
+}
+
+table tr:nth-child(odd) {
+  background-color: #5682B1;
+}
