@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas JavaScript 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Input Data Pegawai</h2>
+
+    <form id="formPegawai">
+        <label>Nama: </label>
+        <input type="text" id="nama" required>
+        <br><br>
+
+        <label>Umur: </label>
+        <input type="number" id="umur" required>
+        <br><br>
+
+        <label>Jabatan</label>
+        <select id="jabatan" required>
+            <option value="">Pilih Jabatan</option>
+            <option value="manajer">Manajer</option>
+            <option value="asisten manajer">Asisten Manajer</option>
+            <option value="staff">Staff</option>
+        </select>
+        <br><br>
+
+        <label>Status:</label>
+        <select id="status" required>
+            <option value="">Pilih Status</option>
+            <option value="menikah">Menikah</option>
+            <option value="belum menikah">Belum Menikah</option>
+        </select>
+        <br><br>
+
+        <button type="submit">Cetak Tabel</button>
+    </form>
+
+    <hr>
+
+    <h2>Data Pegawai</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Nama Pegawai</th>
+                <th>Umur</th>
+                <th>Jabatan</th>
+                <th>Status</th>
+                <th>Gaji Pokok</th>
+                <th>Tunjangan Jabatan</th>
+                <th>BPJS</th>
+                <th>Tunjangan Keluarga</th>
+            </tr>
+        </thead>
+        <tbody id="dataPegawai"></tbody>
+        <tfoot>
+                <tr>
+                    <td colspan="7">Total Gaji</td>
+                    <td id="totalGaji"></td>
+                </tr>
+        </tfoot>
+    </table>
+
+    <script src="data.js"></script>
+
+</body>
+</html>
