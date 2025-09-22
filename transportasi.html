@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Javascript 4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+    <h2>Sistem Manajamen Transportasi</h2>
+
+    <form id="formPelanggan">
+        <label>Nama: </label>
+        <input type="text" id="nama" required>
+        <br><br>
+
+        <label>Nomor Telepon: </label>
+        <input type="text" id="telepon" required>
+        <br><br>
+
+        <label>Kendaraan: </label>
+        <select id="kendaraan">
+            <option value="mobil">Mobil</option>
+            <option value="motor">Motor</option>
+        </select>
+        <br><br>
+
+        <button type="submit">Sewa Kendaraan</button>
+    </form>
+
+    <h3>Daftar Penyewa</h3>
+    <ul id="daftarPelanggan"></ul>
+    </div>
+
+    <script src="transportasi.js"></script>
+</body>
+</html>
