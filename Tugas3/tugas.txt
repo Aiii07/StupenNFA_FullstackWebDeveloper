@@ -1,0 +1,218 @@
+MariaDB [db_penjualan_buku]> INSERT INTO users (name, email, password, role) VALUES
+    -> ('Joshua', 'joshua@gmail.com', 'loveshot', 'customer'),
+    -> ('Mingyu', 'mingyu@gmail.com', 'gyu001', 'customer'),
+    -> ('Wonwoo', 'wonwoo@gmail.com', 'tasty', 'customer'),
+    -> ('Seungkwan', 'seungkwan@gmail.com', 'hajimalago', 'customer'),
+    -> ('Hoshi', 'hoshi@gmail.com', 'horanghae', 'admin');
+Query OK, 5 rows affected (0.003 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [db_penjualan_buku]> INSERT INTO authors (name, photo, bio) VALUES
+    -> ('Haruki Murakami', 'murakami.jpg', 'Japanese writer known for surrealistic novels.'),
+    -> ('Tere Liye', 'tere_liye.jpg', 'Indonesian best-selling novelist.'),
+    -> ('Andrea Hirata', 'andrea_hirata.jpg', 'Author of Laskar Pelangi from Indonesia.'),
+    -> ('Agatha Christie', 'agatha_christie.jpg', 'Famous British writer of detective novels.'),
+    -> ('Dan Brown', 'dan_brown.jpg', 'American author known for The Da Vinci Code.');
+Query OK, 5 rows affected (0.003 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [db_penjualan_buku]> INSERT INTO genres (name, description) VALUES
+    -> ('Mystery', 'Stories that involve solving crimes or uncovering secrets.'),
+    -> ('Fantasy', 'Stories with magical or supernatural elements.'),
+    -> ('Thriller', 'Stories full of suspense and tension.'),
+    -> ('Horror', 'Fiction intended to scare or disturb the reader.'),
+    -> ('Biography', 'Life stories of famous or notable people.');
+Query OK, 5 rows affected (0.004 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [db_penjualan_buku]> INSERT INTO books (title, description, price, stock, cover_photo, genre_id, author_id) VALUES
+    -> ('Norwegian Wood', 'A novel by Haruki Murakami.', 75000, 15, 'norwegian_wood.jpg', 2, 4),
+    -> ('Laskar Pelangi', 'A novel by Andrea Hirata.', 55000, 20, 'laskar_pelangi.jpg', 1, 6),
+    -> ('Murder on the Orient Express', 'A detective novel by Agatha Christie.', 65000, 10, 'orient_express.jpg', 3, 7),
+    -> ('The Da Vinci Code', 'A mystery thriller by Dan Brown.', 80000, 18, 'davinci_code.jpg', 2, 8),
+    -> ('Pulang', 'A novel by Tere Liye.', 60000, 25, 'pulang.jpg', 1, 5);
+Query OK, 5 rows affected (0.010 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [db_penjualan_buku]> INSERT INTO transactions (order_number, customer_id, book_id, total_amount) VALUES
+    -> ('ORD-0006', 4, 1, 75000),
+    -> ('ORD-0007', 5, 2, 55000),
+    -> ('ORD-0008', 6, 3, 65000),
+    -> ('ORD-0009', 7, 4, 80000),
+    -> ('ORD-0010', 8, 5, 60000);
+Query OK, 5 rows affected (0.006 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [db_penjualan_buku]> SELECT * FROM users;
++----+-----------+---------------------+------------+----------+
+| id | name      | email               | password   | role     |
++----+-----------+---------------------+------------+----------+
+|  1 | Jeonghan  | jeonghan@gmail.com  | hanie1004  | admin    |
+|  2 | Chenle    | chenle@gmail.com    | lele2211   | admin    |
+|  3 | Dokyeom   | dk@gmail.com        | salute218  | customer |
+|  4 | Joshua    | joshua@gmail.com    | loveshot   | customer |
+|  5 | Mingyu    | mingyu@gmail.com    | gyu001     | customer |
+|  6 | Wonwoo    | wonwoo@gmail.com    | tasty      | customer |
+|  7 | Seungkwan | seungkwan@gmail.com | hajimalago | customer |
+|  8 | Hoshi     | hoshi@gmail.com     | horanghae  | admin    |
++----+-----------+---------------------+------------+----------+
+8 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM authors;
++----+--------------------+----------------------+----------------------------------------------------------------------------------------+
+| id | name               | photo                | bio                                                                                    |
++----+--------------------+----------------------+----------------------------------------------------------------------------------------+
+|  1 | J.K. Rowling       | jk_rowling.jpg       | British author, best known for the Harry Potter series.                                |
+|  2 | George R.R. Martin | george_rr_martin.jpg | American novelist and short story writer, known for A Song of Ice and Fire.            |
+|  3 | Isaac Asimov       | isaac_asimov.jpg     | American author and professor of biochemistry, known for his works?in?science fiction. |
+|  4 | Haruki Murakami    | murakami.jpg         | Japanese writer known for surrealistic novels.                                         |
+|  5 | Tere Liye          | tere_liye.jpg        | Indonesian best-selling novelist.                                                      |
+|  6 | Andrea Hirata      | andrea_hirata.jpg    | Author of Laskar Pelangi from Indonesia.                                               |
+|  7 | Agatha Christie    | agatha_christie.jpg  | Famous British writer of detective novels.                                             |
+|  8 | Dan Brown          | dan_brown.jpg        | American author known for The Da Vinci Code.                                           |
++----+--------------------+----------------------+----------------------------------------------------------------------------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM genres;
++----+-----------------+----------------------------------------------------------------------+
+| id | name            | description                                                          |
++----+-----------------+----------------------------------------------------------------------+
+|  1 | Fiction         | A literary work based on the imagination and not necessarily on fact |
+|  2 | Non-Fiction     | A literary work based on facts and real events                       |
+|  3 | Science Fiction | A genre that deals with imaginative and futuristic concepts          |
+|  5 | Mystery         | Stories that involve solving crimes or uncovering secrets.           |
+|  6 | Fantasy         | Stories with magical or supernatural elements.                       |
+|  7 | Thriller        | Stories full of suspense and tension.                                |
+|  8 | Horror          | Fiction intended to scare or disturb the reader.                     |
+|  9 | Biography       | Life stories of famous or notable people.                            |
++----+-----------------+----------------------------------------------------------------------+
+8 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books;
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+| id | title                                | description                                      | price    | stock | cover_photo                             | genre_id | author_id |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+|  1 | Harry Potter and the Sorcerers Stone | The first book in the Harry Potter series.       | 25000.00 |    37 | harry_potter-jpg                        |        1 |         1 |
+|  2 | The Lord of the Rings                | A classic fantasy novel by J.R.R. Tolkien.       | 60000.00 |    30 | the_lord_of_the_rings.jpg               |        1 |         2 |
+|  3 | 1984                                 | A dystopian novel by George Orwell.              | 40000.00 |    40 | 1984.jpg                                |        2 |         3 |
+|  4 | The Hitchhikers Guide to the Galaxy  | A comedy science fiction novel by Douglas Adams. | 30000.00 |    20 | the hitchhikers guide_to_the_galaxy.jpg |        3 |         3 |
+|  5 | The Hobbit                           | A fantasy novel by J.R.R. Tolkien.               | 50000.00 |     8 | the_hobbit.jpg                          |        1 |         2 |
+| 16 | Norwegian Wood                       | A novel by Haruki Murakami.                      | 75000.00 |    15 | norwegian_wood.jpg                      |        2 |         4 |
+| 17 | Laskar Pelangi                       | A novel by Andrea Hirata.                        | 55000.00 |    20 | laskar_pelangi.jpg                      |        1 |         6 |
+| 18 | Murder on the Orient Express         | A detective novel by Agatha Christie.            | 65000.00 |    10 | orient_express.jpg                      |        3 |         7 |
+| 19 | The Da Vinci Code                    | A mystery thriller by Dan Brown.                 | 80000.00 |    18 | davinci_code.jpg                        |        2 |         8 |
+| 20 | Pulang                               | A novel by Tere Liye.                            | 60000.00 |    25 | pulang.jpg                              |        1 |         5 |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+10 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM transactions;
++----+--------------+-------------+---------+--------------+
+| id | order_number | customer_id | book_id | total_amount |
++----+--------------+-------------+---------+--------------+
+|  1 | ORD-0001     |           1 |       1 |     50000.00 |
+|  2 | ORD-0002     |           2 |       2 |     60000.00 |
+|  3 | ORD-0003     |           1 |       3 |     40000.00 |
+|  4 | ORD-0004     |           3 |       4 |     30000.00 |
+|  5 | ORD-0005     |           2 |       5 |     50000.00 |
+| 11 | ORD-0006     |           4 |       1 |     75000.00 |
+| 12 | ORD-0007     |           5 |       2 |     55000.00 |
+| 13 | ORD-0008     |           6 |       3 |     65000.00 |
+| 14 | ORD-0009     |           7 |       4 |     80000.00 |
+| 15 | ORD-0010     |           8 |       5 |     60000.00 |
++----+--------------+-------------+---------+--------------+
+10 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> UPDATE users SET role = 'admin' WHERE id = 3;
+Query OK, 1 row affected (0.010 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db_penjualan_buku]> SELECT * FROM users;
++----+-----------+---------------------+------------+----------+
+| id | name      | email               | password   | role     |
++----+-----------+---------------------+------------+----------+
+|  1 | Jeonghan  | jeonghan@gmail.com  | hanie1004  | admin    |
+|  2 | Chenle    | chenle@gmail.com    | lele2211   | admin    |
+|  3 | Dokyeom   | dk@gmail.com        | salute218  | admin    |
+|  4 | Joshua    | joshua@gmail.com    | loveshot   | customer |
+|  5 | Mingyu    | mingyu@gmail.com    | gyu001     | customer |
+|  6 | Wonwoo    | wonwoo@gmail.com    | tasty      | customer |
+|  7 | Seungkwan | seungkwan@gmail.com | hajimalago | customer |
+|  8 | Hoshi     | hoshi@gmail.com     | horanghae  | admin    |
++----+-----------+---------------------+------------+----------+
+8 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> UPDATE books SET price = 70000 WHERE id = 2;
+Query OK, 1 row affected (0.002 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books;
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+| id | title                                | description                                      | price    | stock | cover_photo                             | genre_id | author_id |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+|  1 | Harry Potter and the Sorcerers Stone | The first book in the Harry Potter series.       | 25000.00 |    37 | harry_potter-jpg                        |        1 |         1 |
+|  2 | The Lord of the Rings                | A classic fantasy novel by J.R.R. Tolkien.       | 70000.00 |    30 | the_lord_of_the_rings.jpg               |        1 |         2 |
+|  3 | 1984                                 | A dystopian novel by George Orwell.              | 40000.00 |    40 | 1984.jpg                                |        2 |         3 |
+|  4 | The Hitchhikers Guide to the Galaxy  | A comedy science fiction novel by Douglas Adams. | 30000.00 |    20 | the hitchhikers guide_to_the_galaxy.jpg |        3 |         3 |
+|  5 | The Hobbit                           | A fantasy novel by J.R.R. Tolkien.               | 50000.00 |     8 | the_hobbit.jpg                          |        1 |         2 |
+| 16 | Norwegian Wood                       | A novel by Haruki Murakami.                      | 75000.00 |    15 | norwegian_wood.jpg                      |        2 |         4 |
+| 17 | Laskar Pelangi                       | A novel by Andrea Hirata.                        | 55000.00 |    20 | laskar_pelangi.jpg                      |        1 |         6 |
+| 18 | Murder on the Orient Express         | A detective novel by Agatha Christie.            | 65000.00 |    10 | orient_express.jpg                      |        3 |         7 |
+| 19 | The Da Vinci Code                    | A mystery thriller by Dan Brown.                 | 80000.00 |    18 | davinci_code.jpg                        |        2 |         8 |
+| 20 | Pulang                               | A novel by Tere Liye.                            | 60000.00 |    25 | pulang.jpg                              |        1 |         5 |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+10 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> UPDATE genres SET name = 'Sci-Fi' WHERE id = 3;
+Query OK, 1 row affected (0.011 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [db_penjualan_buku]> SELECT * FROM genres;
++----+-------------+----------------------------------------------------------------------+
+| id | name        | description                                                          |
++----+-------------+----------------------------------------------------------------------+
+|  1 | Fiction     | A literary work based on the imagination and not necessarily on fact |
+|  2 | Non-Fiction | A literary work based on facts and real events                       |
+|  3 | Sci-Fi      | A genre that deals with imaginative and futuristic concepts          |
+|  5 | Mystery     | Stories that involve solving crimes or uncovering secrets.           |
+|  6 | Fantasy     | Stories with magical or supernatural elements.                       |
+|  7 | Thriller    | Stories full of suspense and tension.                                |
+|  8 | Horror      | Fiction intended to scare or disturb the reader.                     |
+|  9 | Biography   | Life stories of famous or notable people.                            |
++----+-------------+----------------------------------------------------------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> DELETE FROM genres WHERE id = 5;
+Query OK, 1 row affected (0.011 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM genres;
++----+-------------+----------------------------------------------------------------------+
+| id | name        | description                                                          |
++----+-------------+----------------------------------------------------------------------+
+|  1 | Fiction     | A literary work based on the imagination and not necessarily on fact |
+|  2 | Non-Fiction | A literary work based on facts and real events                       |
+|  3 | Sci-Fi      | A genre that deals with imaginative and futuristic concepts          |
+|  6 | Fantasy     | Stories with magical or supernatural elements.                       |
+|  7 | Thriller    | Stories full of suspense and tension.                                |
+|  8 | Horror      | Fiction intended to scare or disturb the reader.                     |
+|  9 | Biography   | Life stories of famous or notable people.                            |
++----+-------------+----------------------------------------------------------------------+
+7 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> DELETE FROM transactions WHERE id = 15;
+Query OK, 1 row affected (0.011 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM transactions;
++----+--------------+-------------+---------+--------------+
+| id | order_number | customer_id | book_id | total_amount |
++----+--------------+-------------+---------+--------------+
+|  1 | ORD-0001     |           1 |       1 |     50000.00 |
+|  2 | ORD-0002     |           2 |       2 |     60000.00 |
+|  3 | ORD-0003     |           1 |       3 |     40000.00 |
+|  4 | ORD-0004     |           3 |       4 |     30000.00 |
+|  5 | ORD-0005     |           2 |       5 |     50000.00 |
+| 11 | ORD-0006     |           4 |       1 |     75000.00 |
+| 12 | ORD-0007     |           5 |       2 |     55000.00 |
+| 13 | ORD-0008     |           6 |       3 |     65000.00 |
+| 14 | ORD-0009     |           7 |       4 |     80000.00 |
++----+--------------+-------------+---------+--------------+
+9 rows in set (0.001 sec)
