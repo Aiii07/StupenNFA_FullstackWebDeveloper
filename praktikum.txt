@@ -1,0 +1,410 @@
+Setting environment for using XAMPP for Windows.
+leeji@AISYAHNF31105 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> USE db_penjualan_buku;
+Database changed
+MariaDB [db_penjualan_buku]> SELECT * FROM books;
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+| id | title                                | description                                      | price    | stock | cover_photo                             | genre_id | author_id |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+|  1 | Harry Potter and the Sorcerers Stone | The first book in the Harry Potter series.       | 25000.00 |    37 | harry_potter-jpg                        |        1 |         1 |
+|  2 | The Lord of the Rings                | A classic fantasy novel by J.R.R. Tolkien.       | 70000.00 |    30 | the_lord_of_the_rings.jpg               |        1 |         2 |
+|  3 | 1984                                 | A dystopian novel by George Orwell.              | 40000.00 |    40 | 1984.jpg                                |        2 |         3 |
+|  4 | The Hitchhikers Guide to the Galaxy  | A comedy science fiction novel by Douglas Adams. | 30000.00 |    20 | the hitchhikers guide_to_the_galaxy.jpg |        3 |         3 |
+|  5 | The Hobbit                           | A fantasy novel by J.R.R. Tolkien.               | 50000.00 |     8 | the_hobbit.jpg                          |        1 |         2 |
+| 16 | Norwegian Wood                       | A novel by Haruki Murakami.                      | 75000.00 |    15 | norwegian_wood.jpg                      |        2 |         4 |
+| 17 | Laskar Pelangi                       | A novel by Andrea Hirata.                        | 55000.00 |    20 | laskar_pelangi.jpg                      |        1 |         6 |
+| 18 | Murder on the Orient Express         | A detective novel by Agatha Christie.            | 65000.00 |    10 | orient_express.jpg                      |        3 |         7 |
+| 19 | The Da Vinci Code                    | A mystery thriller by Dan Brown.                 | 80000.00 |    18 | davinci_code.jpg                        |        2 |         8 |
+| 20 | Pulang                               | A novel by Tere Liye.                            | 60000.00 |    25 | pulang.jpg                              |        1 |         5 |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+10 rows in set (0.090 sec)
+
+MariaDB [db_penjualan_buku]> SELECT title, price FROM books;
++--------------------------------------+----------+
+| title                                | price    |
++--------------------------------------+----------+
+| Harry Potter and the Sorcerers Stone | 25000.00 |
+| The Lord of the Rings                | 70000.00 |
+| 1984                                 | 40000.00 |
+| The Hitchhikers Guide to the Galaxy  | 30000.00 |
+| The Hobbit                           | 50000.00 |
+| Norwegian Wood                       | 75000.00 |
+| Laskar Pelangi                       | 55000.00 |
+| Murder on the Orient Express         | 65000.00 |
+| The Da Vinci Code                    | 80000.00 |
+| Pulang                               | 60000.00 |
++--------------------------------------+----------+
+10 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT title, price FROM books WHERE stock > 30;
++--------------------------------------+----------+
+| title                                | price    |
++--------------------------------------+----------+
+| Harry Potter and the Sorcerers Stone | 25000.00 |
+| 1984                                 | 40000.00 |
++--------------------------------------+----------+
+2 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books WHERE price <  35000;
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+| id | title                                | description                                      | price    | stock | cover_photo                             | genre_id | author_id |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+|  1 | Harry Potter and the Sorcerers Stone | The first book in the Harry Potter series.       | 25000.00 |    37 | harry_potter-jpg                        |        1 |         1 |
+|  4 | The Hitchhikers Guide to the Galaxy  | A comedy science fiction novel by Douglas Adams. | 30000.00 |    20 | the hitchhikers guide_to_the_galaxy.jpg |        3 |         3 |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+2 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books WHERE  stock > 30 AND price  < 38000;
++----+--------------------------------------+--------------------------------------------+----------+-------+------------------+----------+-----------+
+| id | title                                | description                                | price    | stock | cover_photo      | genre_id | author_id |
++----+--------------------------------------+--------------------------------------------+----------+-------+------------------+----------+-----------+
+|  1 | Harry Potter and the Sorcerers Stone | The first book in the Harry Potter series. | 25000.00 |    37 | harry_potter-jpg |        1 |         1 |
++----+--------------------------------------+--------------------------------------------+----------+-------+------------------+----------+-----------+
+1 row in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books WHERE  stock > 30 OR price  < 38000;
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+| id | title                                | description                                      | price    | stock | cover_photo                             | genre_id | author_id |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+|  1 | Harry Potter and the Sorcerers Stone | The first book in the Harry Potter series.       | 25000.00 |    37 | harry_potter-jpg                        |        1 |         1 |
+|  3 | 1984                                 | A dystopian novel by George Orwell.              | 40000.00 |    40 | 1984.jpg                                |        2 |         3 |
+|  4 | The Hitchhikers Guide to the Galaxy  | A comedy science fiction novel by Douglas Adams. | 30000.00 |    20 | the hitchhikers guide_to_the_galaxy.jpg |        3 |         3 |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+3 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books WHERE stock = 0 OR price > 50000;
++----+------------------------------+--------------------------------------------+----------+-------+---------------------------+----------+-----------+
+| id | title                        | description                                | price    | stock | cover_photo               | genre_id | author_id |
++----+------------------------------+--------------------------------------------+----------+-------+---------------------------+----------+-----------+
+|  2 | The Lord of the Rings        | A classic fantasy novel by J.R.R. Tolkien. | 70000.00 |    30 | the_lord_of_the_rings.jpg |        1 |         2 |
+| 16 | Norwegian Wood               | A novel by Haruki Murakami.                | 75000.00 |    15 | norwegian_wood.jpg        |        2 |         4 |
+| 17 | Laskar Pelangi               | A novel by Andrea Hirata.                  | 55000.00 |    20 | laskar_pelangi.jpg        |        1 |         6 |
+| 18 | Murder on the Orient Express | A detective novel by Agatha Christie.      | 65000.00 |    10 | orient_express.jpg        |        3 |         7 |
+| 19 | The Da Vinci Code            | A mystery thriller by Dan Brown.           | 80000.00 |    18 | davinci_code.jpg          |        2 |         8 |
+| 20 | Pulang                       | A novel by Tere Liye.                      | 60000.00 |    25 | pulang.jpg                |        1 |         5 |
++----+------------------------------+--------------------------------------------+----------+-------+---------------------------+----------+-----------+
+6 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM transactions;
++----+--------------+-------------+---------+--------------+
+| id | order_number | customer_id | book_id | total_amount |
++----+--------------+-------------+---------+--------------+
+|  1 | ORD-0001     |           1 |       1 |     50000.00 |
+|  2 | ORD-0002     |           2 |       2 |     60000.00 |
+|  3 | ORD-0003     |           1 |       3 |     40000.00 |
+|  4 | ORD-0004     |           3 |       4 |     30000.00 |
+|  5 | ORD-0005     |           2 |       5 |     50000.00 |
+| 11 | ORD-0006     |           4 |       1 |     75000.00 |
+| 12 | ORD-0007     |           5 |       2 |     55000.00 |
+| 13 | ORD-0008     |           6 |       3 |     65000.00 |
+| 14 | ORD-0009     |           7 |       4 |     80000.00 |
++----+--------------+-------------+---------+--------------+
+9 rows in set (0.002 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM transactions WHERE customer_id - 1;
++----+--------------+-------------+---------+--------------+
+| id | order_number | customer_id | book_id | total_amount |
++----+--------------+-------------+---------+--------------+
+|  2 | ORD-0002     |           2 |       2 |     60000.00 |
+|  4 | ORD-0004     |           3 |       4 |     30000.00 |
+|  5 | ORD-0005     |           2 |       5 |     50000.00 |
+| 11 | ORD-0006     |           4 |       1 |     75000.00 |
+| 12 | ORD-0007     |           5 |       2 |     55000.00 |
+| 13 | ORD-0008     |           6 |       3 |     65000.00 |
+| 14 | ORD-0009     |           7 |       4 |     80000.00 |
++----+--------------+-------------+---------+--------------+
+7 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM transactions WHERE order_number = 'ORD-0003';
++----+--------------+-------------+---------+--------------+
+| id | order_number | customer_id | book_id | total_amount |
++----+--------------+-------------+---------+--------------+
+|  3 | ORD-0003     |           1 |       3 |     40000.00 |
++----+--------------+-------------+---------+--------------+
+1 row in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM transactions WHERE customer_id IN (1, 3);
++----+--------------+-------------+---------+--------------+
+| id | order_number | customer_id | book_id | total_amount |
++----+--------------+-------------+---------+--------------+
+|  1 | ORD-0001     |           1 |       1 |     50000.00 |
+|  3 | ORD-0003     |           1 |       3 |     40000.00 |
+|  4 | ORD-0004     |           3 |       4 |     30000.00 |
++----+--------------+-------------+---------+--------------+
+3 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM transactions WHERE customer_id NOT IN (1, 3);
++----+--------------+-------------+---------+--------------+
+| id | order_number | customer_id | book_id | total_amount |
++----+--------------+-------------+---------+--------------+
+|  2 | ORD-0002     |           2 |       2 |     60000.00 |
+|  5 | ORD-0005     |           2 |       5 |     50000.00 |
+| 11 | ORD-0006     |           4 |       1 |     75000.00 |
+| 12 | ORD-0007     |           5 |       2 |     55000.00 |
+| 13 | ORD-0008     |           6 |       3 |     65000.00 |
+| 14 | ORD-0009     |           7 |       4 |     80000.00 |
++----+--------------+-------------+---------+--------------+
+6 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books ORDER BY price;
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+| id | title                                | description                                      | price    | stock | cover_photo                             | genre_id | author_id |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+|  1 | Harry Potter and the Sorcerers Stone | The first book in the Harry Potter series.       | 25000.00 |    37 | harry_potter-jpg                        |        1 |         1 |
+|  4 | The Hitchhikers Guide to the Galaxy  | A comedy science fiction novel by Douglas Adams. | 30000.00 |    20 | the hitchhikers guide_to_the_galaxy.jpg |        3 |         3 |
+|  3 | 1984                                 | A dystopian novel by George Orwell.              | 40000.00 |    40 | 1984.jpg                                |        2 |         3 |
+|  5 | The Hobbit                           | A fantasy novel by J.R.R. Tolkien.               | 50000.00 |     8 | the_hobbit.jpg                          |        1 |         2 |
+| 17 | Laskar Pelangi                       | A novel by Andrea Hirata.                        | 55000.00 |    20 | laskar_pelangi.jpg                      |        1 |         6 |
+| 20 | Pulang                               | A novel by Tere Liye.                            | 60000.00 |    25 | pulang.jpg                              |        1 |         5 |
+| 18 | Murder on the Orient Express         | A detective novel by Agatha Christie.            | 65000.00 |    10 | orient_express.jpg                      |        3 |         7 |
+|  2 | The Lord of the Rings                | A classic fantasy novel by J.R.R. Tolkien.       | 70000.00 |    30 | the_lord_of_the_rings.jpg               |        1 |         2 |
+| 16 | Norwegian Wood                       | A novel by Haruki Murakami.                      | 75000.00 |    15 | norwegian_wood.jpg                      |        2 |         4 |
+| 19 | The Da Vinci Code                    | A mystery thriller by Dan Brown.                 | 80000.00 |    18 | davinci_code.jpg                        |        2 |         8 |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+10 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books ORDER BY price DESC;
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+| id | title                                | description                                      | price    | stock | cover_photo                             | genre_id | author_id |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+| 19 | The Da Vinci Code                    | A mystery thriller by Dan Brown.                 | 80000.00 |    18 | davinci_code.jpg                        |        2 |         8 |
+| 16 | Norwegian Wood                       | A novel by Haruki Murakami.                      | 75000.00 |    15 | norwegian_wood.jpg                      |        2 |         4 |
+|  2 | The Lord of the Rings                | A classic fantasy novel by J.R.R. Tolkien.       | 70000.00 |    30 | the_lord_of_the_rings.jpg               |        1 |         2 |
+| 18 | Murder on the Orient Express         | A detective novel by Agatha Christie.            | 65000.00 |    10 | orient_express.jpg                      |        3 |         7 |
+| 20 | Pulang                               | A novel by Tere Liye.                            | 60000.00 |    25 | pulang.jpg                              |        1 |         5 |
+| 17 | Laskar Pelangi                       | A novel by Andrea Hirata.                        | 55000.00 |    20 | laskar_pelangi.jpg                      |        1 |         6 |
+|  5 | The Hobbit                           | A fantasy novel by J.R.R. Tolkien.               | 50000.00 |     8 | the_hobbit.jpg                          |        1 |         2 |
+|  3 | 1984                                 | A dystopian novel by George Orwell.              | 40000.00 |    40 | 1984.jpg                                |        2 |         3 |
+|  4 | The Hitchhikers Guide to the Galaxy  | A comedy science fiction novel by Douglas Adams. | 30000.00 |    20 | the hitchhikers guide_to_the_galaxy.jpg |        3 |         3 |
+|  1 | Harry Potter and the Sorcerers Stone | The first book in the Harry Potter series.       | 25000.00 |    37 | harry_potter-jpg                        |        1 |         1 |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+10 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books LIMIT 2;
++----+--------------------------------------+--------------------------------------------+----------+-------+---------------------------+----------+-----------+
+| id | title                                | description                                | price    | stock | cover_photo               | genre_id | author_id |
++----+--------------------------------------+--------------------------------------------+----------+-------+---------------------------+----------+-----------+
+|  1 | Harry Potter and the Sorcerers Stone | The first book in the Harry Potter series. | 25000.00 |    37 | harry_potter-jpg          |        1 |         1 |
+|  2 | The Lord of the Rings                | A classic fantasy novel by J.R.R. Tolkien. | 70000.00 |    30 | the_lord_of_the_rings.jpg |        1 |         2 |
++----+--------------------------------------+--------------------------------------------+----------+-------+---------------------------+----------+-----------+
+2 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books LIMIT 3 OFFSET 2;
++----+-------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+| id | title                               | description                                      | price    | stock | cover_photo                             | genre_id | author_id |
++----+-------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+|  3 | 1984                                | A dystopian novel by George Orwell.              | 40000.00 |    40 | 1984.jpg                                |        2 |         3 |
+|  4 | The Hitchhikers Guide to the Galaxy | A comedy science fiction novel by Douglas Adams. | 30000.00 |    20 | the hitchhikers guide_to_the_galaxy.jpg |        3 |         3 |
+|  5 | The Hobbit                          | A fantasy novel by J.R.R. Tolkien.               | 50000.00 |     8 | the_hobbit.jpg                          |        1 |         2 |
++----+-------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+3 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books WHERE title LIKE 'Harry%';
++----+--------------------------------------+--------------------------------------------+----------+-------+------------------+----------+-----------+
+| id | title                                | description                                | price    | stock | cover_photo      | genre_id | author_id |
++----+--------------------------------------+--------------------------------------------+----------+-------+------------------+----------+-----------+
+|  1 | Harry Potter and the Sorcerers Stone | The first book in the Harry Potter series. | 25000.00 |    37 | harry_potter-jpg |        1 |         1 |
++----+--------------------------------------+--------------------------------------------+----------+-------+------------------+----------+-----------+
+1 row in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books WHERE description LIKE 'fantasy%';
+Empty set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books WHERE description LIKE '%fantasy';
+Empty set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books WHERE description LIKE '%fantasy%';
++----+-----------------------+--------------------------------------------+----------+-------+---------------------------+----------+-----------+
+| id | title                 | description                                | price    | stock | cover_photo               | genre_id | author_id |
++----+-----------------------+--------------------------------------------+----------+-------+---------------------------+----------+-----------+
+|  2 | The Lord of the Rings | A classic fantasy novel by J.R.R. Tolkien. | 70000.00 |    30 | the_lord_of_the_rings.jpg |        1 |         2 |
+|  5 | The Hobbit            | A fantasy novel by J.R.R. Tolkien.         | 50000.00 |     8 | the_hobbit.jpg            |        1 |         2 |
++----+-----------------------+--------------------------------------------+----------+-------+---------------------------+----------+-----------+
+2 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM transactions;
++----+--------------+-------------+---------+--------------+
+| id | order_number | customer_id | book_id | total_amount |
++----+--------------+-------------+---------+--------------+
+|  1 | ORD-0001     |           1 |       1 |     50000.00 |
+|  2 | ORD-0002     |           2 |       2 |     60000.00 |
+|  3 | ORD-0003     |           1 |       3 |     40000.00 |
+|  4 | ORD-0004     |           3 |       4 |     30000.00 |
+|  5 | ORD-0005     |           2 |       5 |     50000.00 |
+| 11 | ORD-0006     |           4 |       1 |     75000.00 |
+| 12 | ORD-0007     |           5 |       2 |     55000.00 |
+| 13 | ORD-0008     |           6 |       3 |     65000.00 |
+| 14 | ORD-0009     |           7 |       4 |     80000.00 |
++----+--------------+-------------+---------+--------------+
+9 rows in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT SUM(total_amount) FROM transactions;
++-------------------+
+| SUM(total_amount) |
++-------------------+
+|         505000.00 |
++-------------------+
+1 row in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT SUM(total_amount) AS total_sales FROM transactions;
++-------------+
+| total_sales |
++-------------+
+|   505000.00 |
++-------------+
+1 row in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT MAX(price) AS max_price FROM books;
++-----------+
+| max_price |
++-----------+
+|  80000.00 |
++-----------+
+1 row in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT MIN(price) AS min_price FROM books;
++-----------+
+| min_price |
++-----------+
+|  25000.00 |
++-----------+
+1 row in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT AVG (price) AS avg_price FROM books;
++--------------+
+| avg_price    |
++--------------+
+| 55000.000000 |
++--------------+
+1 row in set (0.000 sec)
+
+MariaDB [db_penjualan_buku]> SELECT COUNT(*) AS total_books FROM books;
++-------------+
+| total_books |
++-------------+
+|          10 |
++-------------+
+1 row in set (0.009 sec)
+
+MariaDB [db_penjualan_buku]> SELECT title, price FROM books
+    ->  WHERE id IN (SELECT book_id FROM transactions WHERE total_amount > 50000);
++--------------------------------------+----------+
+| title                                | price    |
++--------------------------------------+----------+
+| Harry Potter and the Sorcerers Stone | 25000.00 |
+| The Lord of the Rings                | 70000.00 |
+| 1984                                 | 40000.00 |
+| The Hitchhikers Guide to the Galaxy  | 30000.00 |
++--------------------------------------+----------+
+4 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM transactions;
++----+--------------+-------------+---------+--------------+
+| id | order_number | customer_id | book_id | total_amount |
++----+--------------+-------------+---------+--------------+
+|  1 | ORD-0001     |           1 |       1 |     50000.00 |
+|  2 | ORD-0002     |           2 |       2 |     60000.00 |
+|  3 | ORD-0003     |           1 |       3 |     40000.00 |
+|  4 | ORD-0004     |           3 |       4 |     30000.00 |
+|  5 | ORD-0005     |           2 |       5 |     50000.00 |
+| 11 | ORD-0006     |           4 |       1 |     75000.00 |
+| 12 | ORD-0007     |           5 |       2 |     55000.00 |
+| 13 | ORD-0008     |           6 |       3 |     65000.00 |
+| 14 | ORD-0009     |           7 |       4 |     80000.00 |
++----+--------------+-------------+---------+--------------+
+9 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM books;
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+| id | title                                | description                                      | price    | stock | cover_photo                             | genre_id | author_id |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+|  1 | Harry Potter and the Sorcerers Stone | The first book in the Harry Potter series.       | 25000.00 |    37 | harry_potter-jpg                        |        1 |         1 |
+|  2 | The Lord of the Rings                | A classic fantasy novel by J.R.R. Tolkien.       | 70000.00 |    30 | the_lord_of_the_rings.jpg               |        1 |         2 |
+|  3 | 1984                                 | A dystopian novel by George Orwell.              | 40000.00 |    40 | 1984.jpg                                |        2 |         3 |
+|  4 | The Hitchhikers Guide to the Galaxy  | A comedy science fiction novel by Douglas Adams. | 30000.00 |    20 | the hitchhikers guide_to_the_galaxy.jpg |        3 |         3 |
+|  5 | The Hobbit                           | A fantasy novel by J.R.R. Tolkien.               | 50000.00 |     8 | the_hobbit.jpg                          |        1 |         2 |
+| 16 | Norwegian Wood                       | A novel by Haruki Murakami.                      | 75000.00 |    15 | norwegian_wood.jpg                      |        2 |         4 |
+| 17 | Laskar Pelangi                       | A novel by Andrea Hirata.                        | 55000.00 |    20 | laskar_pelangi.jpg                      |        1 |         6 |
+| 18 | Murder on the Orient Express         | A detective novel by Agatha Christie.            | 65000.00 |    10 | orient_express.jpg                      |        3 |         7 |
+| 19 | The Da Vinci Code                    | A mystery thriller by Dan Brown.                 | 80000.00 |    18 | davinci_code.jpg                        |        2 |         8 |
+| 20 | Pulang                               | A novel by Tere Liye.                            | 60000.00 |    25 | pulang.jpg                              |        1 |         5 |
++----+--------------------------------------+--------------------------------------------------+----------+-------+-----------------------------------------+----------+-----------+
+10 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT DISTINCT genre_id FROM books;
++----------+
+| genre_id |
++----------+
+|        1 |
+|        2 |
+|        3 |
++----------+
+3 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT title, price,
+    ->   CASE
+    ->     WHEN price <= 30000 THEN 'Murah'
+    ->     WHEN price BETWEEN 30000 AND 50000 THEN 'Standar'
+    ->     ELSE 'Mahal'
+    ->   END AS price_category
+    -> FROM books;
++--------------------------------------+----------+----------------+
+| title                                | price    | price_category |
++--------------------------------------+----------+----------------+
+| Harry Potter and the Sorcerers Stone | 25000.00 | Murah          |
+| The Lord of the Rings                | 70000.00 | Mahal          |
+| 1984                                 | 40000.00 | Standar        |
+| The Hitchhikers Guide to the Galaxy  | 30000.00 | Murah          |
+| The Hobbit                           | 50000.00 | Standar        |
+| Norwegian Wood                       | 75000.00 | Mahal          |
+| Laskar Pelangi                       | 55000.00 | Mahal          |
+| Murder on the Orient Express         | 65000.00 | Mahal          |
+| The Da Vinci Code                    | 80000.00 | Mahal          |
+| Pulang                               | 60000.00 | Mahal          |
++--------------------------------------+----------+----------------+
+10 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT genre_id, COUNT(*) AS total_books FROM books
+    ->  GROUP BY genre_id;
++----------+-------------+
+| genre_id | total_books |
++----------+-------------+
+|        1 |           5 |
+|        2 |           3 |
+|        3 |           2 |
++----------+-------------+
+3 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT genre_id, AVG(price) AS average_price FROM books
+    ->  GROUP BY genre_id
+    ->  HAVING AVG(price) > 30000;
++----------+---------------+
+| genre_id | average_price |
++----------+---------------+
+|        1 |  52000.000000 |
+|        2 |  65000.000000 |
+|        3 |  47500.000000 |
++----------+---------------+
+3 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT genre_id, COUNT(genre_id) AS genre_count FROM books
+    ->  GROUP BY genre_id
+    -> HAVING COUNT(genre_id) > 1;
++----------+-------------+
+| genre_id | genre_count |
++----------+-------------+
+|        1 |           5 |
+|        2 |           3 |
+|        3 |           2 |
++----------+-------------+
+3 rows in set (0.001 sec)
