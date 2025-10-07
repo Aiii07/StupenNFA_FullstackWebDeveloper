@@ -1,0 +1,377 @@
+
+Setting environment for using XAMPP for Windows.
+leeji@AISYAHNF31105 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> USE db_penjualan_buku;
+Database changed
+MariaDB [db_penjualan_buku]> SHOW TABLES;
++-----------------------------+
+| Tables_in_db_penjualan_buku |
++-----------------------------+
+| authors                     |
+| books                       |
+| genres                      |
+| transactions                |
+| users                       |
++-----------------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> DESC transactions;
++--------------+---------------+------+-----+---------+----------------+
+| Field        | Type          | Null | Key | Default | Extra          |
++--------------+---------------+------+-----+---------+----------------+
+| id           | int(11)       | NO   | PRI | NULL    | auto_increment |
+| order_number | varchar(255)  | NO   | UNI | NULL    |                |
+| customer_id  | int(11)       | NO   | MUL | NULL    |                |
+| book_id      | int(11)       | NO   | MUL | NULL    |                |
+| total_amount | decimal(10,2) | NO   |     | NULL    |                |
++--------------+---------------+------+-----+---------+----------------+
+5 rows in set (0.038 sec)
+
+MariaDB [db_penjualan_buku]> DESC users;
++----------+--------------------------+------+-----+---------+----------------+
+| Field    | Type                     | Null | Key | Default | Extra          |
++----------+--------------------------+------+-----+---------+----------------+
+| id       | int(11)                  | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(255)             | NO   |     | NULL    |                |
+| email    | varchar(255)             | NO   | UNI | NULL    |                |
+| password | varchar(255)             | NO   |     | NULL    |                |
+| role     | enum('customer','admin') | NO   |     | NULL    |                |
++----------+--------------------------+------+-----+---------+----------------+
+5 rows in set (0.030 sec)
+
+MariaDB [db_penjualan_buku]> SELECT users.name, transactions.order_number, transactions.total_amount FROM users
+    ->  INNER JOIN transactions ON users.id = transactions.customer_id;
++-----------+--------------+--------------+
+| name      | order_number | total_amount |
++-----------+--------------+--------------+
+| Jeonghan  | ORD-0001     |     50000.00 |
+| Chenle    | ORD-0002     |     60000.00 |
+| Jeonghan  | ORD-0003     |     40000.00 |
+| Dokyeom   | ORD-0004     |     30000.00 |
+| Chenle    | ORD-0005     |     50000.00 |
+| Joshua    | ORD-0006     |     75000.00 |
+| Mingyu    | ORD-0007     |     55000.00 |
+| Wonwoo    | ORD-0008     |     65000.00 |
+| Seungkwan | ORD-0009     |     80000.00 |
++-----------+--------------+--------------+
+9 rows in set (0.098 sec)
+
+MariaDB [db_penjualan_buku]> DESC books;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| id          | int(11)       | NO   | PRI | NULL    | auto_increment |
+| title       | varchar(255)  | NO   |     | NULL    |                |
+| description | text          | NO   |     | NULL    |                |
+| price       | decimal(10,2) | NO   |     | NULL    |                |
+| stock       | int(11)       | NO   |     | NULL    |                |
+| cover_photo | varchar(255)  | NO   |     | NULL    |                |
+| genre_id    | int(11)       | NO   | MUL | NULL    |                |
+| author_id   | int(11)       | NO   | MUL | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
+8 rows in set (0.030 sec)
+
+MariaDB [db_penjualan_buku]> DESC genres;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name        | varchar(255) | NO   |     | NULL    |                |
+| description | text         | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+3 rows in set (0.023 sec)
+
+MariaDB [db_penjualan_buku]> SELECT books.title, genres.name AS genre_name
+    -> FROM books
+    -> INNER JOIN genres ON books.genre_id = genres.id;
++--------------------------------------+-------------+
+| title                                | genre_name  |
++--------------------------------------+-------------+
+| Harry Potter and the Sorcerers Stone | Fiction     |
+| The Lord of the Rings                | Fiction     |
+| 1984                                 | Non-Fiction |
+| The Hitchhikers Guide to the Galaxy  | Sci-Fi      |
+| The Hobbit                           | Fiction     |
+| Norwegian Wood                       | Non-Fiction |
+| Laskar Pelangi                       | Fiction     |
+| Murder on the Orient Express         | Sci-Fi      |
+| The Da Vinci Code                    | Non-Fiction |
+| Pulang                               | Fiction     |
++--------------------------------------+-------------+
+10 rows in set (0.002 sec)
+
+MariaDB [db_penjualan_buku]> DESC users;
++----------+--------------------------+------+-----+---------+----------------+
+| Field    | Type                     | Null | Key | Default | Extra          |
++----------+--------------------------+------+-----+---------+----------------+
+| id       | int(11)                  | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(255)             | NO   |     | NULL    |                |
+| email    | varchar(255)             | NO   | UNI | NULL    |                |
+| password | varchar(255)             | NO   |     | NULL    |                |
+| role     | enum('customer','admin') | NO   |     | NULL    |                |
++----------+--------------------------+------+-----+---------+----------------+
+5 rows in set (0.033 sec)
+
+MariaDB [db_penjualan_buku]> DESC transactions;
++--------------+---------------+------+-----+---------+----------------+
+| Field        | Type          | Null | Key | Default | Extra          |
++--------------+---------------+------+-----+---------+----------------+
+| id           | int(11)       | NO   | PRI | NULL    | auto_increment |
+| order_number | varchar(255)  | NO   | UNI | NULL    |                |
+| customer_id  | int(11)       | NO   | MUL | NULL    |                |
+| book_id      | int(11)       | NO   | MUL | NULL    |                |
+| total_amount | decimal(10,2) | NO   |     | NULL    |                |
++--------------+---------------+------+-----+---------+----------------+
+5 rows in set (0.033 sec)
+
+MariaDB [db_penjualan_buku]> SELECT users.name, transactions.order_number, transactions.total_amount
+    ->  FROM users
+    ->  LEFT JOIN transactions ON users.id = transactions.customer_id;
++-----------+--------------+--------------+
+| name      | order_number | total_amount |
++-----------+--------------+--------------+
+| Jeonghan  | ORD-0001     |     50000.00 |
+| Jeonghan  | ORD-0003     |     40000.00 |
+| Chenle    | ORD-0002     |     60000.00 |
+| Chenle    | ORD-0005     |     50000.00 |
+| Dokyeom   | ORD-0004     |     30000.00 |
+| Joshua    | ORD-0006     |     75000.00 |
+| Mingyu    | ORD-0007     |     55000.00 |
+| Wonwoo    | ORD-0008     |     65000.00 |
+| Seungkwan | ORD-0009     |     80000.00 |
+| Hoshi     | NULL         |         NULL |
++-----------+--------------+--------------+
+10 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> INSERT INTO users (name, email, password, role) VALUES
+    ->  ('Aisyah', 'aii@gmail.com', 'aii123', 'customer');
+Query OK, 1 row affected (0.010 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM users;
++----+-----------+---------------------+------------+----------+
+| id | name      | email               | password   | role     |
++----+-----------+---------------------+------------+----------+
+|  1 | Jeonghan  | jeonghan@gmail.com  | hanie1004  | admin    |
+|  2 | Chenle    | chenle@gmail.com    | lele2211   | admin    |
+|  3 | Dokyeom   | dk@gmail.com        | salute218  | admin    |
+|  4 | Joshua    | joshua@gmail.com    | loveshot   | customer |
+|  5 | Mingyu    | mingyu@gmail.com    | gyu001     | customer |
+|  6 | Wonwoo    | wonwoo@gmail.com    | tasty      | customer |
+|  7 | Seungkwan | seungkwan@gmail.com | hajimalago | customer |
+|  8 | Hoshi     | hoshi@gmail.com     | horanghae  | admin    |
+|  9 | Aisyah    | aii@gmail.com       | aii123     | customer |
++----+-----------+---------------------+------------+----------+
+9 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM transactions;
++----+--------------+-------------+---------+--------------+
+| id | order_number | customer_id | book_id | total_amount |
++----+--------------+-------------+---------+--------------+
+|  1 | ORD-0001     |           1 |       1 |     50000.00 |
+|  2 | ORD-0002     |           2 |       2 |     60000.00 |
+|  3 | ORD-0003     |           1 |       3 |     40000.00 |
+|  4 | ORD-0004     |           3 |       4 |     30000.00 |
+|  5 | ORD-0005     |           2 |       5 |     50000.00 |
+| 11 | ORD-0006     |           4 |       1 |     75000.00 |
+| 12 | ORD-0007     |           5 |       2 |     55000.00 |
+| 13 | ORD-0008     |           6 |       3 |     65000.00 |
+| 14 | ORD-0009     |           7 |       4 |     80000.00 |
++----+--------------+-------------+---------+--------------+
+9 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT users.name, transactions.order_number, transactions.total_amount
+    ->  FROM users
+    ->  LEFT JOIN transactions ON users.id = transactions.customer_id;
++-----------+--------------+--------------+
+| name      | order_number | total_amount |
++-----------+--------------+--------------+
+| Jeonghan  | ORD-0001     |     50000.00 |
+| Jeonghan  | ORD-0003     |     40000.00 |
+| Chenle    | ORD-0002     |     60000.00 |
+| Chenle    | ORD-0005     |     50000.00 |
+| Dokyeom   | ORD-0004     |     30000.00 |
+| Joshua    | ORD-0006     |     75000.00 |
+| Mingyu    | ORD-0007     |     55000.00 |
+| Wonwoo    | ORD-0008     |     65000.00 |
+| Seungkwan | ORD-0009     |     80000.00 |
+| Hoshi     | NULL         |         NULL |
+| Aisyah    | NULL         |         NULL |
++-----------+--------------+--------------+
+11 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT books.title, genres.name AS genre_name
+    ->  FROM books
+    ->  LEFT JOIN genres ON books.genre_id = genres.id;
++--------------------------------------+-------------+
+| title                                | genre_name  |
++--------------------------------------+-------------+
+| Harry Potter and the Sorcerers Stone | Fiction     |
+| The Lord of the Rings                | Fiction     |
+| 1984                                 | Non-Fiction |
+| The Hitchhikers Guide to the Galaxy  | Sci-Fi      |
+| The Hobbit                           | Fiction     |
+| Norwegian Wood                       | Non-Fiction |
+| Laskar Pelangi                       | Fiction     |
+| Murder on the Orient Express         | Sci-Fi      |
+| The Da Vinci Code                    | Non-Fiction |
+| Pulang                               | Fiction     |
++--------------------------------------+-------------+
+10 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> DESC transactions;
++--------------+---------------+------+-----+---------+----------------+
+| Field        | Type          | Null | Key | Default | Extra          |
++--------------+---------------+------+-----+---------+----------------+
+| id           | int(11)       | NO   | PRI | NULL    | auto_increment |
+| order_number | varchar(255)  | NO   | UNI | NULL    |                |
+| customer_id  | int(11)       | NO   | MUL | NULL    |                |
+| book_id      | int(11)       | NO   | MUL | NULL    |                |
+| total_amount | decimal(10,2) | NO   |     | NULL    |                |
++--------------+---------------+------+-----+---------+----------------+
+5 rows in set (0.033 sec)
+
+MariaDB [db_penjualan_buku]> DESC users;
++----------+--------------------------+------+-----+---------+----------------+
+| Field    | Type                     | Null | Key | Default | Extra          |
++----------+--------------------------+------+-----+---------+----------------+
+| id       | int(11)                  | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(255)             | NO   |     | NULL    |                |
+| email    | varchar(255)             | NO   | UNI | NULL    |                |
+| password | varchar(255)             | NO   |     | NULL    |                |
+| role     | enum('customer','admin') | NO   |     | NULL    |                |
++----------+--------------------------+------+-----+---------+----------------+
+5 rows in set (0.037 sec)
+
+MariaDB [db_penjualan_buku]> SELECT transactions.order_number, users.name FROM transactions
+    ->  RIGHT JOIN users ON transactions.customer_id = users.id;
++--------------+-----------+
+| order_number | name      |
++--------------+-----------+
+| ORD-0001     | Jeonghan  |
+| ORD-0003     | Jeonghan  |
+| ORD-0002     | Chenle    |
+| ORD-0005     | Chenle    |
+| ORD-0004     | Dokyeom   |
+| ORD-0006     | Joshua    |
+| ORD-0007     | Mingyu    |
+| ORD-0008     | Wonwoo    |
+| ORD-0009     | Seungkwan |
+| NULL         | Hoshi     |
+| NULL         | Aisyah    |
++--------------+-----------+
+11 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> INSERT INTO genres (name, description) VALUES
+    ->  ('Romance', 'A genre focuses on love and romance.');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM genres;
++----+-------------+----------------------------------------------------------------------+
+| id | name        | description                                                          |
++----+-------------+----------------------------------------------------------------------+
+|  1 | Fiction     | A literary work based on the imagination and not necessarily on fact |
+|  2 | Non-Fiction | A literary work based on facts and real events                       |
+|  3 | Sci-Fi      | A genre that deals with imaginative and futuristic concepts          |
+|  6 | Fantasy     | Stories with magical or supernatural elements.                       |
+|  7 | Thriller    | Stories full of suspense and tension.                                |
+|  8 | Horror      | Fiction intended to scare or disturb the reader.                     |
+|  9 | Biography   | Life stories of famous or notable people.                            |
+| 10 | Romance     | A genre focuses on love and romance.                                 |
++----+-------------+----------------------------------------------------------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT genres.name AS genre_name, books.title
+    -> FROM genres
+    -> RIGHT JOIN books ON genres.id = books.genre_id;
++-------------+--------------------------------------+
+| genre_name  | title                                |
++-------------+--------------------------------------+
+| Fiction     | Harry Potter and the Sorcerers Stone |
+| Fiction     | The Lord of the Rings                |
+| Non-Fiction | 1984                                 |
+| Sci-Fi      | The Hitchhikers Guide to the Galaxy  |
+| Fiction     | The Hobbit                           |
+| Non-Fiction | Norwegian Wood                       |
+| Fiction     | Laskar Pelangi                       |
+| Sci-Fi      | Murder on the Orient Express         |
+| Non-Fiction | The Da Vinci Code                    |
+| Fiction     | Pulang                               |
++-------------+--------------------------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [db_penjualan_buku]> SELECT genres.name AS genre_name, books.title FROM genres
+    ->  LEFT JOIN books ON genres.id = books.genre_id;
++-------------+--------------------------------------+
+| genre_name  | title                                |
++-------------+--------------------------------------+
+| Fiction     | Harry Potter and the Sorcerers Stone |
+| Fiction     | The Lord of the Rings                |
+| Fiction     | The Hobbit                           |
+| Fiction     | Laskar Pelangi                       |
+| Fiction     | Pulang                               |
+| Non-Fiction | 1984                                 |
+| Non-Fiction | Norwegian Wood                       |
+| Non-Fiction | The Da Vinci Code                    |
+| Sci-Fi      | The Hitchhikers Guide to the Galaxy  |
+| Sci-Fi      | Murder on the Orient Express         |
+| Fantasy     | NULL                                 |
+| Thriller    | NULL                                 |
+| Horror      | NULL                                 |
+| Biography   | NULL                                 |
+| Romance     | NULL                                 |
++-------------+--------------------------------------+
+15 rows in set (0.009 sec)
+
+MariaDB [db_penjualan_buku]> CREATE VIEW user_transactions_summary_view AS
+    ->  SELECT users.name, COUNT(transactions.id) AS total_transactions FROM users
+    ->  LEFT JOIN transactions ON users.id = transactions.customer_id
+    ->  GROUP BY users.id;
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM user_transactions_summary_view;
++-----------+--------------------+
+| name      | total_transactions |
++-----------+--------------------+
+| Jeonghan  |                  2 |
+| Chenle    |                  2 |
+| Dokyeom   |                  1 |
+| Joshua    |                  1 |
+| Mingyu    |                  1 |
+| Wonwoo    |                  1 |
+| Seungkwan |                  1 |
+| Hoshi     |                  0 |
+| Aisyah    |                  0 |
++-----------+--------------------+
+9 rows in set (0.002 sec)
+
+MariaDB [db_penjualan_buku]> CREATE VIEW book_genre_view AS
+    ->  SELECT books.title, genres.name AS genre_name FROM books
+    ->  LEFT JOIN genres ON books.genre_id = genres.id;
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [db_penjualan_buku]> SELECT * FROM book_genre_view;
++--------------------------------------+-------------+
+| title                                | genre_name  |
++--------------------------------------+-------------+
+| Harry Potter and the Sorcerers Stone | Fiction     |
+| The Lord of the Rings                | Fiction     |
+| 1984                                 | Non-Fiction |
+| The Hitchhikers Guide to the Galaxy  | Sci-Fi      |
+| The Hobbit                           | Fiction     |
+| Norwegian Wood                       | Non-Fiction |
+| Laskar Pelangi                       | Fiction     |
+| Murder on the Orient Express         | Sci-Fi      |
+| The Da Vinci Code                    | Non-Fiction |
+| Pulang                               | Fiction     |
++--------------------------------------+-------------+
+10 rows in set (0.002 sec)
