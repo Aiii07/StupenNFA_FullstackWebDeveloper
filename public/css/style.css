@@ -1,0 +1,42 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #E6D8C3;
+    color: #ffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    margin-bottom: 5px;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #ffff;
+}
+
+.card {
+    background-color: #C2A68C;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 20px 25px;
+    width: 400px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.card strong {
+    display: inline-block;
+    width: 90px;
+    color: #ffff;
+}
+
+table td {
+    padding: 5px 0;
+    color: #fff;
+}
