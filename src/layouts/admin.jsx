@@ -20,10 +20,14 @@ useEffect(() => {
   }, [token, decodedData, navigate])
 
   const handleLogout = async () => {
-    if (token) {
+    try {
       await logout({ token });
+    } catch (error) {
+      console.log("Logout Error", error);
+    } finally {
       localStorage.removeItem("accessToken");
-      navigate("/login");
+      localStorage.removeItem("userInfo");
+      navigate("/login")
     }
   }
 

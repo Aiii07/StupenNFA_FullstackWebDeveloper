@@ -44,10 +44,15 @@ export const logout = async ({ token }) => {
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`
       }
     })
-    localStorage.removeItem('accessToken')
     return data
   } catch (error) {
     console.log(error);
     throw error
   }
+}
+
+export const getUserRole = () => {
+  const user = localStorage.getItem("userInfo");
+  if (!user) return null;
+  return JSON.parse(user)?.role || null;
 }

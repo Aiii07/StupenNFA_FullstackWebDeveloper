@@ -68,7 +68,7 @@ import { login, useDecodeToken } from "../../_services/auth";
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6" action="#">
                   <div>
                     <label
-                      htmlFor="email"
+                      for="email"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
                       Your email
@@ -86,7 +86,7 @@ import { login, useDecodeToken } from "../../_services/auth";
                   </div>
                   <div>
                     <label
-                      htmlFor="password"
+                      for="password"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
                       Password
@@ -95,7 +95,7 @@ import { login, useDecodeToken } from "../../_services/auth";
                       type="password"
                       name="password"
                       id="password"
-                      value={formData.email}
+                      value={formData.password}
                       onChange={handleChange}
                       placeholder="••••••••"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -114,7 +114,7 @@ import { login, useDecodeToken } from "../../_services/auth";
                     </div>
                     <div className="ml-3 text-sm">
                       <label
-                        htmlFor="terms"
+                        for="terms"
                         className="font-light text-gray-500 dark:text-gray-300"
                       >
                         I accept the{" "}
